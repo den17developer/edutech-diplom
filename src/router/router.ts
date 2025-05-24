@@ -111,30 +111,9 @@ const pagesRoutes = [
     },
     component: () => import('@/views/pages/course/categories/index.vue')
   },
-  {
-    path: '/course/grid',
-    name: 'course.grid.classic',
-    meta: {
-      title: setTitle('Grid Classic')
-    },
-    component: () => import('@/views/pages/course/grid-classic/index.vue')
-  },
-  {
-    path: '/course/grid-2',
-    name: 'course.grid.minimal',
-    meta: {
-      title: setTitle('Grid Minimal')
-    },
-    component: () => import('@/views/pages/course/grid-minimal/index.vue')
-  },
-  {
-    path: '/course/list',
-    name: 'course.list.classic',
-    meta: {
-      title: setTitle('List Classic')
-    },
-    component: () => import('@/views/pages/course/list-classic/index.vue')
-  },
+  
+  
+  
   {
     path: '/course/list-2',
     name: 'course.list.minimal',
@@ -143,14 +122,7 @@ const pagesRoutes = [
     },
     component: () => import('@/views/pages/course/list-minimal/index.vue')
   },
-  {
-    path: '/course/detail',
-    name: 'course.detail',
-    meta: {
-      title: setTitle('Detail Classic')
-    },
-    component: () => import('@/views/pages/course/detail-classic/index.vue')
-  },
+  
   {
     path: '/course/detail-min',
     name: 'course.detail.minimal',

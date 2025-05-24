@@ -18,5 +18,24 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
+  },
+
+  server: {
+    proxy: {
+      '/stepik-api': {
+        target: 'https://stepik.org',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/stepik-api/, ''),
+        configure: (proxy) => {
+          // Настраиваем прокси, чтобы следовать перенаправлениям
+          proxy.on('proxyRes', (proxyRes, req, res) => {
+            // Логируем ответы для отладки
+            console.log(`Ответ от Stepik: ${req.method} ${req.url} → ${proxyRes.statusCode}`);
+          });
+        }
+      }
+    }
   }
+
+  
 });

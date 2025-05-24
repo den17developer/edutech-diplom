@@ -127,15 +127,86 @@ export type ReviewType = {
 };
 
 export type ProductType = {
-  image: string;
+  id?: number;
   title: string;
+  image: string;
+  isLike: boolean;
   duration: string;
+  lectures: number;
+  level: string;
   rating: number;
-  badge?: BadgeType;
-  lectures?: number;
   description?: string;
-  level?: string;
-  ribbon?: string;
-  isLike?: boolean;
-  instructor?: UserType;
+  isPaid?: boolean;
+  price?: number;
+  instructors?: any[];
+  language?: string;
+  beginDate?: string | null;
+  endDate?: string | null;
+  certificate?: boolean;
+  enrolled?: number;
 };
+
+// Модель для курса со Stepik API с расширенной информацией
+export interface StepikCourse extends ProductType {
+  summary?: string;
+  syllabus?: string[];
+  requirements?: string[];
+  targetAudience?: string[];
+  certificateDetails?: any;
+  introVideo?: string | null;
+  sections?: any[];
+  publicAccess?: boolean;
+  categoryText?: string;
+}
+
+// Настройки для конфигурации Stepik API
+export interface StepikApiConfig {
+  clientId: string;
+  clientSecret: string;
+  redirectUri?: string;
+}
+
+// Интерфейс для запроса поиска курсов
+export interface CourseSearchRequest {
+  query?: string;
+  category?: string;
+  isPaid?: boolean;
+  language?: string;
+  level?: string;
+  certificate?: boolean;
+  sorting?: string;
+  page?: number;
+  pageSize?: number;
+}
+
+export interface CourseSearchResponse {
+  courses: ProductType[];
+  pagination: {
+    page: number;
+    pageSize: number;
+    totalPages: number;
+    totalItems: number;
+  };
+}
+
+// Интерфейс для хранения состояния поиска курсов
+export interface CourseSearchState {
+  query: string;
+  filters: {
+    category: string;
+    isPaid?: boolean;
+    language?: string;
+    level?: string;
+    certificate?: boolean;
+  };
+  sort: string;
+  pagination: {
+    currentPage: number;
+    pageSize: number;
+    totalPages: number;
+    totalItems: number;
+  };
+  loading: boolean;
+  error: string | null;
+  courses: ProductType[];
+}
